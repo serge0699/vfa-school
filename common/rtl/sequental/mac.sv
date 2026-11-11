@@ -43,7 +43,7 @@ module mac (
 	logic [16:0] sum;
 	assign sum = out_o + mult;
 
-	// Уиножение с накоплением или без.
+	// Умножение с накоплением или без.
 	always @(posedge clk_i or posedge areset_i) begin
 		if( areset_i ) begin
 			{ovfl_o, out_o} <= 17'b0;
