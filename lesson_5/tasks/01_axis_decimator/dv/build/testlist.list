@@ -1,0 +1,6 @@
+# Файл тестлиста модуля AXI-Stream прореживателя.
+# Формат: <название-теста> : <количество-итераций> : <конфигурация>
+# Конфигурации находятся в директории env/configs
+axis_decimator_test_base            : 2 : axis_decimator_32_8
+axis_decimator_test_reset           : 2 : axis_decimator_32_8
+axis_decimator_test_multiple_config : 2 : axis_decimator_32_8

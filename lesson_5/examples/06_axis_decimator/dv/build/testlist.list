@@ -1,0 +1,5 @@
+# Файл тестлиста модуля AXI-Stream прореживателя.
+# Формат: <название-теста> : <количество-итераций> : <DATA_WIDTH> : <DEC_WIDTH>
+axis_decimator_test_base            : 2 : 32 : 8
+axis_decimator_test_reset           : 2 : 32 : 8
+axis_decimator_test_multiple_config : 2 : 32 : 8
