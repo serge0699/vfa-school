@@ -77,7 +77,7 @@ class axis_pow_scoreboard_base
         end
         // Логирование.
         if( is_logging_enabled ) begin
-            $display("%t Checked! Input: %h Output: %h",
+            $display("%t Checked! Input: %0h Output: %0h",
                 $time(), t_m.tdata,
                     t_s.tdata);
         end
