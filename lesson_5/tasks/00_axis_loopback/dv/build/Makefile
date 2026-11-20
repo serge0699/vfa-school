@@ -16,6 +16,9 @@ INCLUDE = $(addprefix ../env/,$(shell ls ../env))
 # Топ-модуль верификационного окружения.
 TOP = tb_axis_loopback
 
+# Режим запуска.
+MODE = -gui
+
 # Добавление библиотеки common в компиляцию.
 COMP_OPTS = -L common_lib
 
@@ -30,8 +33,8 @@ COMP_OPTS += +define+AXIS_MAX_TDATA_WIDTH=128 \
 # Добавление библиотеки common в оптимизацию.
 SIM_OPTS  = -voptargs="-L common_lib"
 
-# Запуск в GUI режиме + включение логирования monitor AXI-Stream.
-SIM_OPTS += -gui +axis_monitor_logging +common_db_debug
+# Режим запуска и логирование monitor AXI-Stream.
+SIM_OPTS += $(MODE) +axis_monitor_logging +common_db_debug
 
 # Подключение основного Makefile для
 # сборки и симуляции.
