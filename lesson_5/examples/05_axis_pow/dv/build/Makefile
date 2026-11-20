@@ -13,21 +13,25 @@ EXAMPLE = $(realpath  ./../..)
 # Топ-модуль верификационного окружения.
 TOP = tb_axis_pow
 
+# Режим запуска.
+MODE = -gui
+
 # Добавление include файлов из пакета окружения.
-INCLUDE  = $(addprefix ../env/,$(shell ls ../env))
+INCLUDE   = $(addprefix ../env/,$(shell ls ../env))
+COMP_OPTS = +incdir+../env
 
 # Выбор теста усилителя.
 TEST_NAME = axis_pow_test_base
 
 # Добавление библиотек common и AXI-Stream в компиляцию.
-COMP_OPTS = -L common_lib -L axis_lib \
+COMP_OPTS += -L common_lib -L axis_lib \
 	+define+AXIS_POW_TEST=$(TEST_NAME)
 
-# Добавление библиотек common и AXI-Stream в оптимизацию.
-SIM_OPTS  = -voptargs="-L common_lib -L axis_lib"
+# Опции симуляции.
+SIM_OPTS = $(MODE) +common_db_debug +axis_pow_scb_logging
 
-# Запуск в GUI режиме
-SIM_OPTS += -gui +common_db_debug +axis_pow_scb_logging
+# Добавление библиотек common и AXI-Stream в оптимизацию.
+SIM_OPTS += -voptargs="-L common_lib -L axis_lib"
 
 # Подключение основного Makefile для
 # сборки и симуляции.
