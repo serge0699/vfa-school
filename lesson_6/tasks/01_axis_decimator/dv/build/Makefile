@@ -39,7 +39,7 @@ COV_REPORT   = $(SIM)/coverage_report.txt
 COV_CODE = -coverage -voptargs="+cover=$(COV_TYPES)+$(TOP)/DUT+0"
 COV_OPTS = -onfinish stop $(COV_CODE) -do "coverage save \
                -testname $(TEST_NAME)_$(SEED) -onexit $(COV_DATABASE); \
-                   coverage report -details -file $(COV_REPORT) quit;"
+                   coverage report -details -file $(COV_REPORT); quit;"
 
 ifeq ($(PORTS_ONLY),1)
     COV_OPTS += -toggleportsonly

@@ -34,7 +34,7 @@ COV_REPORT   = $(SIM)/coverage_report.txt
 # база наполняется только covergroup'ами.
 COV_OPTS = -onfinish stop -do "coverage save \
                -testname $(TEST_NAME)_$(SEED) -onexit $(COV_DATABASE); \
-                   coverage report -details -file $(COV_REPORT) quit;"
+                   coverage report -details -file $(COV_REPORT); quit;"
 
 # Добавление режима запуска.
 SIM_OPTS += $(MODE)
