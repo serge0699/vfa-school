@@ -23,6 +23,9 @@ class axis_agent_base extends common_agent;
     axis_driver_base    drv;
     axis_monitor_base   mon;
 
+    // Очередь подписчиков на транзакции monitor.
+    mailbox#(axis_seq_item_base) mbx [$];
+
     // Объявление конструктора обязательно, так как
     // конструктор родительского класса содержит аргументы.
     function new(string name, common_component parent);
@@ -81,12 +84,27 @@ class axis_agent_base extends common_agent;
         end
     endfunction
 
-    // Соединение sequencer и driver.
+    // Функция соединения.
     virtual function void connect();
+
+        // Драйвер и секвенсер.
         sqr.sqr2drv = new();
         sqr.drv2sqr = new();
         drv.sqr2drv = sqr.sqr2drv;
         drv.drv2sqr = sqr.drv2sqr;
+
+        // Подключение монитора с броадкастингом.
+        mon.mbx = new();
+        fork forever begin
+            axis_seq_item_base t;
+            foreach( mbx[i] ) begin
+                mon.mbx.peek(t);
+                mbx[i].put(t);
+            end
+            if(t == null) break;
+            void'(mon.mbx.try_get(t));
+        end join_none
+
     endfunction
 
     // Метод запуска.

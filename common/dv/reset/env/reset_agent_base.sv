@@ -20,6 +20,9 @@ class reset_agent_base extends common_agent;
     reset_driver_base    drv;
     reset_monitor_base   mon;
 
+    // Очередь подписчиков на транзакции monitor.
+    mailbox#(reset_seq_item_base) mbx[$];
+
     // Объявление конструктора обязательно, так как
     // конструктор родительского класса содержит аргументы.
     function new(string name, common_component parent);
@@ -56,10 +59,25 @@ class reset_agent_base extends common_agent;
 
     // Метод соединения.
     virtual function void connect();
+
+        // Драйвер и секвенсер.
         sqr.sqr2drv = new();
         sqr.drv2sqr = new();
         drv.sqr2drv = sqr.sqr2drv;
         drv.drv2sqr = sqr.drv2sqr;
+
+        // Подключение монитора с броадкастингом.
+        mon.mbx = new();
+        fork forever begin
+            reset_seq_item_base t;
+            foreach( mbx[i] ) begin
+                mon.mbx.peek(t);
+                mbx[i].put(t);
+            end
+            if(t == null) break;
+            void'(mon.mbx.try_get(t));
+        end join_none
+
     endfunction
 
     // Метод запуска.
