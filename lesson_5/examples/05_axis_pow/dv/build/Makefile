@@ -24,14 +24,15 @@ COMP_OPTS = +incdir+../env
 TEST_NAME = axis_pow_test_base
 
 # Добавление библиотек common и AXI-Stream в компиляцию.
-COMP_OPTS += -L common_lib -L axis_lib \
-	+define+AXIS_POW_TEST=$(TEST_NAME)
+COMP_OPTS += -L common_lib -L axis_lib
 
-# Опции симуляции.
-SIM_OPTS = $(MODE) +common_db_debug +axis_pow_scb_logging
-
+# Добавление теста в компиляцию.
+COMP_OPTS += +define+AXIS_POW_TEST=$(TEST_NAME)
 # Добавление библиотек common и AXI-Stream в оптимизацию.
 SIM_OPTS += -voptargs="-L common_lib -L axis_lib"
+
+# Добавление режима запуска и логирования.
+SIM_OPTS += $(MODE) +common_db_debug +axis_pow_scb_logging
 
 # Подключение основного Makefile для
 # сборки и симуляции.

@@ -1,4 +1,4 @@
-# Домашнее задание `01_axis_decimator`
+# AXI-Stream: верификационное окружение прореживателя
 
 ## Что необходимо сделать в данном задании
 
@@ -74,7 +74,7 @@ AXI-Stream прореживатель пропускает заданное ко
       - `TODO`: Типизированный указатель `p_sqr` и приведение типа в `start()`;
       - `TODO`: Реализация `body()`. Методы `get_item()` и `start_item()` остаются готовыми.
 
-  7. Driver [`dv/env/load/load_driver_lib`](./dv/env/load/load_driver_lib.sv);
+  7. Driver [`dv/env/load/load_driver`](./dv/env/load/load_driver.sv);
       - `TODO`: Начальное состояние сигналов и передача транзакции load.
 
   8. Monitor [`dv/env/load/load_monitor_base`](./dv/env/load/load_monitor_base.sv);

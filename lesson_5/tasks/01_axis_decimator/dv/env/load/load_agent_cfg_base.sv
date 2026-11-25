@@ -19,7 +19,7 @@ class load_agent_cfg_base;
     // Функция вывода информации о конфигурации.
     virtual function string convert2string();
         string str;
-        str = {str, $sformatf("\n| dec_width    : %0d", dec_width)};
+        str = {str, $sformatf("\n| dec_width: %0d", dec_width)};
         return str;
     endfunction
 

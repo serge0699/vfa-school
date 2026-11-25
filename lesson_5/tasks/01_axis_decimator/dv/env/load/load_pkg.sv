@@ -25,7 +25,7 @@ package load_pkg;
     `include "load_seq_item_lib.sv"
     `include "load_sequencer_base.sv"
     `include "load_sequence_lib.sv"
-    `include "load_driver_lib.sv"
+    `include "load_driver.sv"
     `include "load_monitor_base.sv"
     `include "load_agent_base.sv"
 

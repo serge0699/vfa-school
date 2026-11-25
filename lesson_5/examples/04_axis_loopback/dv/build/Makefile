@@ -10,25 +10,23 @@
 # Директория примера.
 EXAMPLE = $(realpath  ./../..)
 
-# Добавление include файлов из пакета окружения.
-INCLUDE = $(addprefix ../env/,$(shell ls ../env))
-
 # Топ-модуль верификационного окружения.
 TOP = tb_axis_loopback
 
 # Режим запуска.
 MODE = -gui
 
-# Добавление библиотек common и AXI-Stream в компиляцию.
-COMP_OPTS = -L common_lib -L axis_lib
+# Добавление include файлов из пакета окружения.
+INCLUDE   = $(addprefix ../env/,$(shell ls ../env))
+COMP_OPTS = +incdir+../env
 
-# Добавление include-файлов пакета окружения.
-COMP_OPTS += +incdir+../env
+# Добавление библиотек common и AXI-Stream в компиляцию.
+COMP_OPTS += -L common_lib -L axis_lib
 
 # Добавление библиотек common и AXI-Stream в оптимизацию.
-SIM_OPTS  = -voptargs="-L common_lib -L axis_lib"
+SIM_OPTS += -voptargs="-L common_lib -L axis_lib"
 
-# Режим запуска и логирование monitor AXI-Stream.
+# Добавление режима запуска и логирования.
 SIM_OPTS += $(MODE) +axis_monitor_logging +common_db_debug
 
 # Подключение основного Makefile для
